@@ -50,11 +50,7 @@ Given SLO of *monthly uptime* and *request response time*, we have the following
 
 ## Creating SLI metrics.
 *TODO:* It is important to know why we want to measure certain metrics for our customer. Describe in detail 5 metrics to measure these SLIs.
-- Number of successful HTTP requests per hour within a month.
-- the average request duration during the last 5 minutes from a histogram or summary.
-- The average response time with status 200 every 5min.
-- Node process uptime over per month.
-- Average uptime per day within a month. 
+- 
 
 ## Create a Dashboard to measure our SLIs
 *TODO:* Create a dashboard to measure the uptime of the frontend and backend services We will also want to measure to measure 40x and 50x errors. Create a dashboard that show these values over a 24 hour period and take a screenshot.
