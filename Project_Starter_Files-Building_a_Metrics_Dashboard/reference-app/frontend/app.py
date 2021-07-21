@@ -1,6 +1,10 @@
 from flask import Flask, render_template, request
+from prometheus_flask_exporter import PrometheusMetrics
 
 app = Flask(__name__)
+
+metrics = PrometheusMetrics(app)
+endpoints = ('')
 
 @app.route('/')
 def homepage():

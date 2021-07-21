@@ -4,17 +4,57 @@
 
 *TODO:* run `kubectl` command to show the running pods and services for the three components. Copy and paste the output or take a screenshot of the output and include it here to verify the installation
 
+***Monitoring***
+![monitoring](answer-img/monitoring.png)
+```
+NAME                                                     READY   STATUS    RESTARTS   AGE
+prometheus-kube-prometheus-operator-5c8b6f657c-c8dgm     1/1     Running   0          2m19s
+prometheus-kube-state-metrics-685b975bb7-nslnn           1/1     Running   0          2m19s
+prometheus-prometheus-node-exporter-88vtf                1/1     Running   0          2m19s
+alertmanager-prometheus-kube-prometheus-alertmanager-0   2/2     Running   0          113s
+prometheus-prometheus-kube-prometheus-prometheus-0       2/2     Running   1          113s
+prometheus-grafana-5dfb9cf69f-mm8pd                      2/2     Running   0          2m19s
+```
+
+***Jaegar***
+![jaeger](answer-img/jaeger.png)
+```
+NAME                               READY   STATUS    RESTARTS   AGE
+jaeger-operator-6954c97677-5vf9v   1/1     Running   0          8m1s
+```
+
+***Services***
+![services](answer-img/services.png)
+
 ## Setup the Jaeger and Prometheus source
 *TODO:* Expose Grafana to the internet and then setup Prometheus as a data source. Provide a screenshot of the home page after logging into Grafana.
 
+***Grafana***
+![homepage](answer-img/grafana_homepage.png)
+
+```
+kubectl port-forward -n monitoring prometheus-grafana-5dfb9cf69f-mm8pd --address 0.0.0.0 3000:3000
+```
+
 ## Create a Basic Dashboard
 *TODO:* Create a dashboard in Grafana that shows Prometheus as a source. Take a screenshot and include it here.
+![dashboard](answer-img/dashboard.png)
 
 ## Describe SLO/SLI
 *TODO:* Describe, in your own words, what the SLIs are, based on an SLO of *monthly uptime* and *request response time*.
 
+Given SLO of *monthly uptime* and *request response time*, we have the following SLI definintion.
+
+-  **Monthly uptime**: Here the SLI is defined by the measurment of the time within a calender month the service has been availlable.
+- **Request response time**: Here the SLI is defined by the total time taken between  request for a service and the completing of the service that was requested.
+
 ## Creating SLI metrics.
-*TODO:* It is important to know why we want to measure certain metrics for our customer. Describe in detail 5 metrics to measure these SLIs. 
+*TODO:* It is important to know why we want to measure certain metrics for our customer. Describe in detail 5 metrics to measure these SLIs.
+- Number of successful HTTP requests per hour within a month.
+- the average request duration during the last 5 minutes from a histogram or summary.
+- The average response time with status 200 every 5min.
+- Node process uptime over per month.
+- Average uptime per day within a month. 
 
 ## Create a Dashboard to measure our SLIs
 *TODO:* Create a dashboard to measure the uptime of the frontend and backend services We will also want to measure to measure 40x and 50x errors. Create a dashboard that show these values over a 24 hour period and take a screenshot.
