@@ -4,3 +4,8 @@ metadata:
     name: frontend-metrics
     labels:
         app: frontend
+subsets:
+    - addresses:
+        - ip: 10.42.0.59
+      ports:
+        - port: 8081
